@@ -1,0 +1,16 @@
+{
+    "commands": {
+        "test": "pwd"
+    },
+    // "tcp": {
+    //     "host": "hostname",
+    //     "port": 1337
+    // },
+    /* uncomment to set up hooks */
+    "hooks": {
+        // "post_save": {
+        //     "pattern": ".*",
+        //     "command": "test"
+        // }
+    }
+}

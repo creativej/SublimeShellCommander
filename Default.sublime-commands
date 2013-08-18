@@ -1,0 +1,16 @@
+[
+    {
+        "caption": "ShellCommander: execute",
+        "command": "shell_commander",
+        "args": {
+            "name": "contest_test"
+        }
+    },
+    {
+        "caption": "ShellCommander: test",
+        "command": "shell_commander",
+        "args": {
+            "name": "test"
+        }
+    }
+]
