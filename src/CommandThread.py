@@ -1,5 +1,5 @@
-from ShellCommander.Helpers import plugin_setting
-from ShellCommander.TcpClient import TcpClient
+from .Helpers import plugin_setting
+from .TcpClient import TcpClient
 import threading, subprocess
 
 def run_shell_command(command):
