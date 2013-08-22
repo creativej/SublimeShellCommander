@@ -16,3 +16,25 @@ def match_pattern(pattern, subject):
         pattern = re.compile(pattern)
         return pattern.match(subject)
     return False
+
+def parameters(windowCommand):
+    def main_folder(folders):
+        if len(folders):
+            return folders[0]
+        return ""
+
+    project_path = main_folder(windowCommand.window.folders());
+    active_view = windowCommand.window.active_view()
+    filename = None
+    if active_view:
+        filename = windowCommand.window.active_view().file_name()
+
+    relative_filename = ''
+    if filename:
+        relative_filename = filename.replace(project_path + '/', '')
+
+    return {
+        'project_path': project_path,
+        'filename': filename,
+        'relative_filename': relative_filename
+    }

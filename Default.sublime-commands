@@ -1,14 +1,14 @@
 [
     {
         "caption": "ShellCommander: execute",
-        "command": "shell_commander",
+        "command": "shell_commander_run_predefined",
         "args": {
             "name": "contest_test"
         }
     },
     {
         "caption": "ShellCommander: test",
-        "command": "shell_commander",
+        "command": "shell_commander_run_prefined",
         "args": {
             "name": "test"
         }

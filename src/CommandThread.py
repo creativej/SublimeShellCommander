@@ -1,4 +1,4 @@
-from .Helpers import plugin_setting
+from .Helper import plugin_setting
 from .TcpClient import TcpClient
 import threading, subprocess
 

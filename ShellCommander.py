@@ -1,4 +1,3 @@
-from .src.CommandThread import CommandThread
-from .src.EventCommandHooks import EventCommandHooks
-from .src.TcpClient import TcpClient
-from .src.ShellCommander import *
+from ShellCommander.src.EventCommandHooks import EventCommandHooks
+from ShellCommander.src.commands.UpdateConsoleViewCommand import UpdateConsoleViewCommand
+from ShellCommander.src.commands.RunPredefinedCommand import ShellCommanderRunPredefinedCommand
