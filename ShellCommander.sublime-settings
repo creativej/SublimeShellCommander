@@ -1,6 +1,7 @@
 {
     "commands": {
-        "test": "pwd"
+        "test": "pwd",
+        "default": "pwd"
     },
     // "tcp": {
     //     "host": "hostname",

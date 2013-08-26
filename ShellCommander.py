@@ -1,3 +1,0 @@
-from ShellCommander.src.EventCommandHooks import EventCommandHooks
-from ShellCommander.src.commands.UpdateConsoleViewCommand import UpdateConsoleViewCommand
-from ShellCommander.src.commands.RunPredefinedCommand import ShellCommanderRunPredefinedCommand

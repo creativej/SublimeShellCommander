@@ -1,7 +1,8 @@
 import sublime_plugin
 
+
 class UpdateConsoleViewCommand(sublime_plugin.TextCommand):
-    def run(self, edit, text, jump = False):
+    def run(self, edit, text, jump=False):
         regions = self.view.find_all('$')
 
         if len(regions):

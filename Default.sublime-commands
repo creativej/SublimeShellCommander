@@ -3,7 +3,7 @@
         "caption": "ShellCommander: execute",
         "command": "shell_commander_run_predefined",
         "args": {
-            "name": "contest_test"
+            "name": "default"
         }
     },
     {
