@@ -6,29 +6,38 @@ VIEW_PREFIX = 'SSH'
 
 class AbstractWindow(sublime_plugin.WindowCommand):
     def console_view(self):
-        ssh = Helper.plugin_setting('ssh')
-
         try:
-            self.view
-
-            if self.view_not_exist(self.view):
+            if (self.view_not_exist(self.view())):
                 raise AttributeError()
         except AttributeError:
-            self.view = self.window.new_file()
-            self.view.set_scratch(True)
+            self.ssh_initiated = False
+            self.view(self.window.new_file())
+            self.view().set_scratch(True)
+            self.open_shell(self.view())
 
-            if ssh:
-                self.init_ssh(ssh['host'], ssh['user'], self.view)
+        return self.view()
+
+    def view(self, view=None):
+        if self.command.is_ssh:
+            if view:
+                self.ssh_view = view
             else:
-                args = {}
-                if (self.window.active_group() > self.window.num_groups() - 1):
-                    args = {"forward": False}
-                self.window.run_command('move_to_neighboring_group', args)
-        return self.view
+                return self.ssh_view
+        else:
+            if view:
+                self.normal_view = view
+            else:
+                return self.normal_view
 
-    def init_ssh(self, host, user, view=None):
-        ssh_setup = '%s@%s' % (user, host)
+    def init_ssh(self):
+        ssh = Helper.plugin_setting('ssh')
+        if ssh:
+            self.console('ssh %s@%s' % (ssh['user'], ssh['host']), False)
+            self.ssh_initiated = True
+        else:
+            print("Can't connect to ssh because no detail is specified.")
 
+    def open_shell(self, view):
         self.window.run_command('repl_open', {
             "type": "subprocess",
             "encoding": {"windows": "$win_cmd_encoding",
@@ -45,7 +54,32 @@ class AbstractWindow(sublime_plugin.WindowCommand):
             "syntax": "Packages/Text/Plain text.tmLanguage"
         })
 
-        self.ssh_command('ssh %s' % (ssh_setup), view, False)
+    def console(self, text, jump=False):
+        view = self.console_view()
+        view.run_command(
+            'update_console_view',
+            {"text": text, "jump": jump}
+        )
+        view.run_command('repl_enter')
+
+    def view_not_exist(self, view):
+        return self.window.get_view_index(view)[0] == -1
+
+    def run_command(self, view=None, visible=True):
+        if not view:
+            view = self.console_view()
+
+        if self.command.is_ssh:
+            if not self.ssh_initiated:
+                self.init_ssh()
+
+            if visible:
+                self.console('echo "%s: %s"' % (Helper.time(), self.command), True)
+
+        self.console(str(self.command))
+
+        if self.command.is_ssh:
+            self.console('echo Done!')
 
     def console_group(self):
         return self.window.get_view_index(self.console_view())[0]
@@ -58,25 +92,3 @@ class AbstractWindow(sublime_plugin.WindowCommand):
             previous_view = self.window.active_view()
             self.window.focus_view(view)
             self.window.focus_view(previous_view)
-
-    def console(self, text, jump=False):
-        self.console_view().run_command(
-            'update_console_view',
-            {"text": text, "jump": jump}
-        )
-
-    def view_not_exist(self, view):
-        return self.window.get_view_index(self.view)[0] == -1
-
-    def ssh_command(self, command, view=None, visible=True):
-        if not view:
-            view = self.console_view()
-
-        if visible:
-            self.console('echo "%s: %s"' % (Helper.time(), command), True)
-            view.run_command('repl_enter')
-
-        self.console(command)
-        view.run_command('repl_enter')
-        self.console('echo "Done!"')
-        view.run_command('repl_enter')
