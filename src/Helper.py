@@ -34,8 +34,11 @@ def parameters(windowCommand):
     project_path = main_folder(windowCommand.window.folders())
     active_view = windowCommand.window.active_view()
     filename = None
+    active_symbol = ''
+
     if active_view:
         filename = windowCommand.window.active_view().file_name()
+        active_symbol = active_view.substr(active_view.word(active_view.sel()[0]))
 
     relative_filename = ''
     file_path = ''
@@ -47,5 +50,6 @@ def parameters(windowCommand):
         'project_path': project_path,
         'filename': filename,
         'relative_filename': relative_filename,
-        'file_path': file_path
+        'file_path': file_path,
+        'active_symbol': active_symbol
     }

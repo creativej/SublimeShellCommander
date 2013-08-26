@@ -12,5 +12,12 @@
         "args": {
             "name": "test"
         }
+    },
+    {
+        "caption": "ShellCommander: execute on symbol",
+        "command": "shell_commander_run_prefined",
+        "args": {
+            "name": "default_symbol"
+        }
     }
 ]

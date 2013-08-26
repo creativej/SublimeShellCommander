@@ -1,11 +1,12 @@
 {
     "commands": {
         "test": "pwd",
-        "default": "pwd"
+        "default": "pwd",
+        "default_symbol": "echo {{active_symbol}}"
     },
-    // "tcp": {
+    // "ssh": {
     //     "host": "hostname",
-    //     "port": 1337
+    //     "user": 1337
     // },
     /* uncomment to set up hooks */
     "hooks": {
