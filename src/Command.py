@@ -24,7 +24,7 @@ class Command:
         self.command = self.extract_command(command, params)
 
     def extract_command(self, command, params):
-        command = command.replace('ssh:', '')
+        command = command.replace('ssh:', '').strip()
 
         for key in params:
             if params[key]:
