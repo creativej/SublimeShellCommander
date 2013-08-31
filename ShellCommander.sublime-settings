@@ -1,8 +1,6 @@
 {
     "commands": {
-        "test": "pwd",
-        "default": "pwd",
-        "default_symbol": "echo {{active_symbol}}",
+        "test": "pwd"
     },
     // "ssh": {
     //     "host": "hostname",

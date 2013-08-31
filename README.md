@@ -1,7 +1,7 @@
 SublimeShellCommander
 =====================
 
-A simple plugin for hooking up shell commands in Sublime. 
+A simple plugin for hooking up shell commands in Sublime.
 
 
 

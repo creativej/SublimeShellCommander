@@ -7,7 +7,6 @@ def plugin_setting(name):
     active_view = sublime.active_window().active_view()
     default_setting = sublime.load_settings('ShellCommander.sublime-settings').get(name, {})
     project_setting = active_view.settings().get('shell_commander', {})
-
     if project_setting and name in project_setting:
         default_setting.update(project_setting[name])
 

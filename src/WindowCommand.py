@@ -1,10 +1,10 @@
 import sublime_plugin
-from ShellCommander.src import Helper
+from . import Helper
 
 VIEW_PREFIX = 'SSH'
 
 
-class AbstractWindow(sublime_plugin.WindowCommand):
+class WindowCommand(sublime_plugin.WindowCommand):
     def console_view(self):
         try:
             if (self.view_not_exist(self.view())):

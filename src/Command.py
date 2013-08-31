@@ -20,6 +20,12 @@ class Command:
             return
 
     def __init__(self, command, params):
+        if isinstance(command, dict):
+            if 'desc' in command:
+                self.desc = command['desc']
+
+            command = command['command']
+
         self.is_ssh = (command.find('ssh:') == 0)
         self.command = self.extract_command(command, params)
 

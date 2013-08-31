@@ -1,23 +1,2 @@
-[
-    {
-        "caption": "ShellCommander: execute",
-        "command": "shell_commander_run_predefined",
-        "args": {
-            "name": "default"
-        }
-    },
-    {
-        "caption": "ShellCommander: test",
-        "command": "shell_commander_run_prefined",
-        "args": {
-            "name": "test"
-        }
-    },
-    {
-        "caption": "ShellCommander: execute on symbol",
-        "command": "shell_commander_run_prefined",
-        "args": {
-            "name": "default_symbol"
-        }
-    }
-]
+// This is file generated from a Shell commander command
+[{"command": "shell_commander_generate_commands", "args": {"name": "update commands"}, "caption": "Shell Commander: update commands"}, {"command": "shell_commander_run_predefined", "args": {"name": "default_symbol"}, "caption": "Shell Commander: default_symbol"}, {"command": "shell_commander_run_predefined", "args": {"name": "test"}, "caption": "Shell Commander: test"}, {"command": "shell_commander_run_predefined", "args": {"name": "default"}, "caption": "Shell Commander: default"}]
