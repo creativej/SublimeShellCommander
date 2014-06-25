@@ -9,7 +9,7 @@ def commands():
 
 def new(name, command):
     return {
-        'caption': 'Shell Commander: %s' % (name),
+        'caption': 'Shell exec: %s' % (name),
         'command': command,
         'args': {
             'name': name

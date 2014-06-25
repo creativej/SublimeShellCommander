@@ -2,10 +2,6 @@
     "commands": {
         "test": "pwd"
     },
-    // "ssh": {
-    //     "host": "hostname",
-    //     "user": 1337
-    // },
     /* uncomment to set up hooks */
     "hooks": {
         // "post_save": {

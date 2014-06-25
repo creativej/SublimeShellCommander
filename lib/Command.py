@@ -1,7 +1,4 @@
-from ShellCommander.src import Helper
-
-SSH_PREFIX = 'ssh:'
-
+from . import Helper
 
 class Command:
     @classmethod
@@ -26,12 +23,9 @@ class Command:
 
             command = command['command']
 
-        self.is_ssh = (command.find('ssh:') == 0)
         self.command = self.extract_command(command, params)
 
     def extract_command(self, command, params):
-        command = command.replace('ssh:', '').strip()
-
         for key in params:
             if params[key]:
                 command = command.replace('{{' + key + '}}', params[key])

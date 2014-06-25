@@ -1,22 +1,18 @@
-from .src import WindowCommand
-from .src import Helper
-from .src import Command
-from .src import DefaultCommands
+from .lib import WindowCommand
+from .lib import Command
+from .lib import Helper
+from .lib import DefaultCommands
 import sublime_plugin
 import json
 import imp
 import inspect
+import sublime
+import os
+from datetime import datetime
 
-modules = [
-    'Command',
-    'Helper',
-    'WindowCommand',
-    'DefaultCommands',
-]
 
-for name in modules:
-    if name in locals():
-        imp.reload(locals()[name])
+def plugin_path():
+    return os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 
 
 class ShellCommanderRunPredefinedCommand(WindowCommand.WindowCommand):
@@ -40,8 +36,8 @@ class ShellCommanderGenerateCommandsCommand(sublime_plugin.WindowCommand):
                 DefaultCommands.new(name, 'shell_commander_run_predefined')
             )
 
-        default_commands_file = open("Default.sublime-commands", "w")
-        default_commands_file.write('// This is file generated from a Shell commander command\n')
+        default_commands_file = open("%s/Default.sublime-commands" % plugin_path(), "w")
+        default_commands_file.write("// This is file generated from a Shell commander command at %s\n" % Helper.time())
         default_commands_file.write(json.dumps(list))
         default_commands_file.close()
 

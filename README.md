@@ -11,5 +11,6 @@ __Dependecies__:
 
 
 __Features__:
-- Make shell commands via SSH
+- Hook a command call to a sublime event. E.g. on_post_save.
 - Filename pattern matching rule for command line calls
+
