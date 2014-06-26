@@ -14,6 +14,23 @@ from datetime import datetime
 def plugin_path():
     return os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 
+def sublime_commands_path():
+    return "%s/Default.sublime-commands" % plugin_path()
+
+def update_sublime_commands(view):
+    window = view.window()
+
+    if not window:
+        return
+
+    with open(sublime_commands_path(), 'r') as f:
+        first_line = f.readline()
+
+    command_project_path = first_line.replace("//", "").strip()
+
+    if command_project_path != Helper.main_folder(window):
+        window.run_command('shell_commander_generate_commands')
+
 
 class ShellCommanderRunPredefinedCommand(WindowCommand.WindowCommand):
     def run(self, **args):
@@ -37,6 +54,7 @@ class ShellCommanderGenerateCommandsCommand(sublime_plugin.WindowCommand):
             )
 
         default_commands_file = open("%s/Default.sublime-commands" % plugin_path(), "w")
+        default_commands_file.write("// %s\n" % Helper.main_folder(self.window))
         default_commands_file.write("// This is file generated from a Shell commander command at %s\n" % Helper.time())
         default_commands_file.write(json.dumps(list))
         default_commands_file.close()
@@ -68,7 +86,10 @@ class EventCommandHooks(sublime_plugin.EventListener):
         self.execute_valid_hook(view, inspect.stack()[0][3])
 
     def on_activated(self, view):
-        self.execute_valid_hook(view, inspect.stack()[0][3])
+        update_sublime_commands(view)
+
+        func_name = inspect.stack()[0][3]
+        self.execute_valid_hook(view, func_name)
 
     def on_new(self, view):
         self.execute_valid_hook(view, inspect.stack()[0][3])
@@ -96,3 +117,4 @@ class EventCommandHooks(sublime_plugin.EventListener):
             view.window().run_command("shell_commander_run_predefined", {"name": hook['name']})
         elif 'command' in hook:
             view.window().run_command("shell_commander_run_predefined", {"command": hook['command']})
+

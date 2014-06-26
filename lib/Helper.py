@@ -25,14 +25,14 @@ def match_pattern(pattern, subject):
         return pattern.match(subject)
     return False
 
+def main_folder(window):
+    folders = window.folders()
+    if folders and len(folders):
+        return folders[0]
+    return ""
 
 def params(windowCommand):
-    def main_folder(folders):
-        if len(folders):
-            return folders[0]
-        return ""
-
-    project_path = main_folder(windowCommand.window.folders())
+    project_path = main_folder(windowCommand.window)
     active_view = windowCommand.window.active_view()
     filename = None
     active_symbol = ''
