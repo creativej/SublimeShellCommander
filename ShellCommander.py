@@ -74,16 +74,20 @@ class UpdateConsoleViewCommand(sublime_plugin.TextCommand):
 
 class EventCommandHooks(sublime_plugin.EventListener):
     def on_post_save(self, view):
-        self.execute_valid_hook(view, inspect.stack()[0][3])
+        func_name = inspect.stack()[0][3]
+        self.execute_valid_hook(view, func_name)
 
     def on_pre_save(self, view):
-        self.execute_valid_hook(view, inspect.stack()[0][3])
+        func_name = inspect.stack()[0][3]
+        self.execute_valid_hook(view, func_name)
 
     def on_pre_close(self, view):
-        self.execute_valid_hook(view, inspect.stack()[0][3])
+        func_name = inspect.stack()[0][3]
+        self.execute_valid_hook(view, func_name)
 
     def on_close(self, view):
-        self.execute_valid_hook(view, inspect.stack()[0][3])
+        func_name = inspect.stack()[0][3]
+        self.execute_valid_hook(view, func_name)
 
     def on_activated(self, view):
         update_sublime_commands(view)
@@ -92,7 +96,8 @@ class EventCommandHooks(sublime_plugin.EventListener):
         self.execute_valid_hook(view, func_name)
 
     def on_new(self, view):
-        self.execute_valid_hook(view, inspect.stack()[0][3])
+        func_name = inspect.stack()[0][3]
+        self.execute_valid_hook(view, func_name)
 
     def execute_valid_hook(self, view, name):
         hooks = self.hooks()
