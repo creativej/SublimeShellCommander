@@ -23,7 +23,7 @@ def update_sublime_commands(view):
     if not window:
         return
 
-    with open(sublime_commands_path(), 'r') as f:
+    with open(sublime_commands_path(), 'w+') as f:
         first_line = f.readline()
 
     command_project_path = first_line.replace("//", "").strip()
