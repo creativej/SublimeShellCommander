@@ -2,7 +2,7 @@ def commands():
     list = []
 
     list.append(
-        new('update commands', 'shell_commander_generate_commands')
+        new('update commands', 'shell_exec_generate_commands')
     )
     return list
 

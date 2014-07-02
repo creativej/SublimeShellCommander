@@ -1,4 +1,4 @@
-# Sublime Shell Commander
+# Sublime Shell Exec
 
 A simple plugin for hooking up shell commands in Sublime.
 
@@ -10,21 +10,21 @@ __Features__:
 ### Dependency
 - [SublimeREPL](https://github.com/wuub/SublimeREPL) sublime plugin
 
-Shell Commander uses SublimeREPL in the background to running shell commands.
+Shell exec uses SublimeREPL in the background to running shell commands.
 
 
 ### Manual Install
 
 1. Click the `Preferences > Browse Packages…` menu
 2. Browse up a folder and then into the `Installed Packages/` folder
-3. Download [zip package](https://github.com/creativej/SublimeShellCommander/archive/master.zip) rename it to `SublimeShellCommander.sublime-package` and copy it into the `Installed Packages/` directory
+3. Download [zip package](https://github.com/creativej/SublimeShellExec/archive/master.zip) rename it to `SublimeShellExec.sublime-package` and copy it into the `Installed Packages/` directory
 4. Restart Sublime Text
 
 ### How to use
-In order to use Shell Commander you need to edit either the package user preference file or your project file e.g. project.sublime-project
+In order to use Shell exec you need to edit either the package user preference file or your project file e.g. project.sublime-project
 
-You can access the Shell Commander's user preference file by:
-Click the `Preferences > Package Settings > Shell Commander > Settings - User` menu
+You can access the Shell exec's user preference file by:
+Click the `Preferences > Package Settings > Shell Exec > Settings - User` menu
 
 
 #### Setup basic custom command
@@ -58,7 +58,7 @@ __Available parameters:__
 #### How to access the commands
 Once the command is setup in the setting file, you can access it using the shortcut __"ctrl+shift+p"__:
 
-![Sublime command menu](http://i.imgur.com/VERXK3V.png =200x)
+![Sublime command menu](http://i.imgur.com/hKhp1m1.png =200x)
 
 
 
@@ -68,7 +68,7 @@ You can also hook the command up with your key bindings:
 [
     ...
     {
-        "keys": ["ctrl+j"], "command": "shell_commander_run_predefined", "args": { "name": "echo test" }
+        "keys": ["ctrl+j"], "command": "shell_exec", "args": { "name": "echo test" }
     },
     ...
 ]

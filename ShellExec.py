@@ -29,10 +29,10 @@ def update_sublime_commands(view):
     command_project_path = first_line.replace("//", "").strip()
 
     if command_project_path != Helper.main_folder(window):
-        window.run_command('shell_commander_generate_commands')
+        window.run_command('shell_exec_generate_commands')
 
 
-class ShellCommanderRunPredefinedCommand(WindowCommand.WindowCommand):
+class ShellExecCommand(WindowCommand.WindowCommand):
     def run(self, **args):
         command = Command.Command.from_args(args, Helper.params(self))
 
@@ -44,18 +44,18 @@ class ShellCommanderRunPredefinedCommand(WindowCommand.WindowCommand):
         self.run_command()
 
 
-class ShellCommanderGenerateCommandsCommand(sublime_plugin.WindowCommand):
+class ShellExecGenerateCommandsCommand(sublime_plugin.WindowCommand):
     def run(self, **args):
         commands = Helper.plugin_setting('commands')
         list = DefaultCommands.commands()
         for name in commands.keys():
             list.append(
-                DefaultCommands.new(name, 'shell_commander_run_predefined')
+                DefaultCommands.new(name, 'shell_exec')
             )
 
         default_commands_file = open("%s/Default.sublime-commands" % plugin_path(), "w")
         default_commands_file.write("// %s\n" % Helper.main_folder(self.window))
-        default_commands_file.write("// This is file generated from a Shell commander command at %s\n" % Helper.time())
+        default_commands_file.write("// This is file generated from a Shell Exec command at %s\n" % Helper.time())
         default_commands_file.write(json.dumps(list))
         default_commands_file.close()
 
@@ -119,7 +119,7 @@ class EventCommandHooks(sublime_plugin.EventListener):
             return
 
         if 'name' in hook:
-            view.window().run_command("shell_commander_run_predefined", {"name": hook['name']})
+            view.window().run_command("shell_exec", {"name": hook['name']})
         elif 'command' in hook:
-            view.window().run_command("shell_commander_run_predefined", {"command": hook['command']})
+            view.window().run_command("shell_exec", {"command": hook['command']})
 
