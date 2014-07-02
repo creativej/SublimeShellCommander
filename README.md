@@ -36,29 +36,6 @@ Click the `Preferences > Package Settings > Shell Commander > Settings - User` m
 }
 ```
 
-Once the command is setup in the setting file.
-
-You can access it using the shortcut "ctrl+shift+p":
-
-![Sublime command menu](http://i.imgur.com/VERXK3V.png =200x)
-
-
-
-
-You can also hook the command up in your key bindings:
-```
-// Default (OSX).sublime-keymap
-[
-    ...
-    {
-        "keys": ["ctrl+j"], "command": "shell_commander_run_predefined", "args": { "name": "echo test" }
-    },
-    ...
-]
-```
-
-
-
 
 #### Setup basic custom command to run in your project path
 ```
@@ -76,6 +53,27 @@ __Available parameters:__
 - relative_filename
 - file_path
 - active_symbol (the word your cursor was on)
+
+
+#### How to access the commands
+Once the command is setup in the setting file, you can access it using the shortcut __"ctrl+shift+p"__:
+
+![Sublime command menu](http://i.imgur.com/VERXK3V.png =200x)
+
+
+
+You can also hook the command up with your key bindings:
+```
+// Default (OSX).sublime-keymap
+[
+    ...
+    {
+        "keys": ["ctrl+j"], "command": "shell_commander_run_predefined", "args": { "name": "echo test" }
+    },
+    ...
+]
+```
+
 
 
 
