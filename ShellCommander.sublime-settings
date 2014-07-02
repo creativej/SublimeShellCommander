@@ -1,11 +1,20 @@
+/*
+    Available parameters to use in command:
+    - project_path
+    - filename
+    - relative_filename
+    - file_path
+    - active_symbol
+*/
 {
     "commands": {
         "test": "pwd"
+        // , "show project path": "cd {{project_path}}; pwd"
     },
     /* uncomment to set up hooks */
     "hooks": {
-        // "post_save": {
-        //     "pattern": ".*",
+        // "on_post_save": {
+        //     "pattern": ".*", // e.g. "index\\.html"
         //     "command": "test"
         // }
     }
