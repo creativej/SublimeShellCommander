@@ -15,7 +15,7 @@ def plugin_path():
     return os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 
 def sublime_commands_path():
-    return "%s/Default.sublime-commands" % plugin_path()
+    return os.path.join(plugin_path(), "Default.sublime-commands")
 
 def update_sublime_commands(view):
     window = view.window()
@@ -53,7 +53,10 @@ class ShellExecGenerateCommandsCommand(sublime_plugin.WindowCommand):
                 DefaultCommands.new(name, 'shell_exec')
             )
 
-        default_commands_file = open("%s/Default.sublime-commands" % plugin_path(), "w")
+        default_commands_file = open(
+            sublime_commands_path(),
+            "w"
+        )
         default_commands_file.write("// %s\n" % Helper.main_folder(self.window))
         default_commands_file.write("// This is file generated from a Shell Exec command at %s\n" % Helper.time())
         default_commands_file.write(json.dumps(list))
