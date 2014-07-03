@@ -1,10 +1,10 @@
 def commands():
-    list = []
+    command_lists = []
 
-    list.append(
+    command_lists.append(
         new('update commands', 'shell_exec_generate_commands')
     )
-    return list
+    return command_lists
 
 
 def new(name, command):

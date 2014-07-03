@@ -47,9 +47,9 @@ class ShellExecCommand(WindowCommand.WindowCommand):
 class ShellExecGenerateCommandsCommand(sublime_plugin.WindowCommand):
     def run(self, **args):
         commands = Helper.plugin_setting('commands')
-        list = DefaultCommands.commands()
+        new_commands = DefaultCommands.commands()
         for name in commands.keys():
-            list.append(
+            new_commands.append(
                 DefaultCommands.new(name, 'shell_exec')
             )
 
@@ -59,7 +59,7 @@ class ShellExecGenerateCommandsCommand(sublime_plugin.WindowCommand):
         )
         default_commands_file.write("// %s\n" % Helper.main_folder(self.window))
         default_commands_file.write("// This is file generated from a Shell Exec command at %s\n" % Helper.time())
-        default_commands_file.write(json.dumps(list))
+        default_commands_file.write(json.dumps(new_commands))
         default_commands_file.close()
 
 
