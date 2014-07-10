@@ -53,14 +53,11 @@ class ShellExecGenerateCommandsCommand(sublime_plugin.WindowCommand):
                 DefaultCommands.new(name, 'shell_exec')
             )
 
-        default_commands_file = open(
-            sublime_commands_path(),
-            "w"
-        )
-        default_commands_file.write("// %s\n" % Helper.main_folder(self.window))
-        default_commands_file.write("// This is file generated from a Shell Exec command at %s\n" % Helper.time())
-        default_commands_file.write(json.dumps(new_commands))
-        default_commands_file.close()
+        with open(sublime_commands_path(), "w") as f:
+            f.write("// %s\n" % Helper.main_folder(self.window))
+            f.write("// This is file generated from a Shell Exec command at %s\n" % Helper.time())
+            f.write(json.dumps(new_commands))
+            f.close()
 
 
 class UpdateConsoleViewCommand(sublime_plugin.TextCommand):
